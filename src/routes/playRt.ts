@@ -6,6 +6,7 @@ export const playRt: express.Router = express.Router();
     playRt.get("/", PLAYER.FetchAll);
     playRt.get("/:id", PLAYER.GetOne);
     playRt.put("/:id", PLAYER.Update);
+    playRt.delete("/:id", PLAYER.Delete);
 
 
 

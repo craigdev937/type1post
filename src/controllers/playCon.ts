@@ -53,9 +53,22 @@ class PlayerClass {
             const player = await Player.findOneBy({
                 id: String(id)
             });
-            if (!player) res.status(404).json(res.statusMessage)
+            if (!player) res.status(404).json(res.statusMessage);
             await Player.update({ id: String(id) }, req.body);
             return res.status(201).json("Player was Updated!");
+        } catch (error) {
+            res.status(500).json(res.statusMessage);
+            next(error);
+        }
+    };
+
+    Delete: express.RequestHandler =
+    async (req, res, next) => {
+        const { id } = req.params;
+        try {
+            const player = await Player.delete({ id: String(id) });
+            if (!player) res.status(404).json(res.statusMessage);
+            return res.status(201).json("Player Deleted!");
         } catch (error) {
             res.status(500).json(res.statusMessage);
             next(error);
