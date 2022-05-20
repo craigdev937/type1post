@@ -36,9 +36,26 @@ class PlayerClass {
     GetOne: express.RequestHandler =
     async (req, res, next) => {
         try {
-            const player =
-            await Player.findOneBy({id: String(req.params.id)});
+            const player = await Player.findOneBy({
+                id: String(req.params.id)
+            });
             return res.status(201).json(player);
+        } catch (error) {
+            res.status(500).json(res.statusMessage);
+            next(error);
+        }
+    };
+
+    Update: express.RequestHandler =
+    async (req, res, next) => {
+        const { id } = req.params;
+        try {
+            const player = await Player.findOneBy({
+                id: String(id)
+            });
+            if (!player) res.status(404).json(res.statusMessage)
+            await Player.update({ id: String(id) }, req.body);
+            return res.status(201).json("Player was Updated!");
         } catch (error) {
             res.status(500).json(res.statusMessage);
             next(error);
