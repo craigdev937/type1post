@@ -1,3 +1,4 @@
+import "dotenv/config";
 import "reflect-metadata";
 import express from "express";
 import helmet from "helmet";
@@ -29,7 +30,7 @@ import { dataSource } from "./data/dataSource";
     app.use(express.json());
     app.use(logger("dev"));
     app.use("/api", playRt);
-    const port = process.env.PORT || 9000;
+    const port = process.env.PORT;
     app.listen(port, () => {
         console.log(`Server: http://localhost:${port}`);
         console.log("Press Ctrl + C to exit.");

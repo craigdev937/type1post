@@ -1,9 +1,8 @@
 import express from "express";
-import { stringify } from "querystring";
 import { Player } from "../models/Player";
 
 class PlayerClass {
-    CreatePlayer: express.RequestHandler =
+    Create: express.RequestHandler =
     async (req, res, next) => {
         try {
             const player: Player = new Player();
@@ -46,15 +45,19 @@ class PlayerClass {
         }
     };
 
-    Update: express.RequestHandler =
-    async (req, res, next) => {
-        const { id } = req.params;
+    Update: express.RequestHandler = async (req, res, next) => {
         try {
             const player = await Player.findOneBy({
-                id: String(id)
+                id: String(req.params.id)
             });
             if (!player) res.status(404).json(res.statusMessage);
-            await Player.update({ id: String(id) }, req.body);
+            await Player.update({ id: String(req.params.id) }, {
+                alias: req.body.alias,
+                first: req.body.first,
+                last: req.body.last,
+                age: req.body.age,
+                info: req.body.info,
+            });
             return res.status(201).json("Player was Updated!");
         } catch (error) {
             res.status(500).json(res.statusMessage);
