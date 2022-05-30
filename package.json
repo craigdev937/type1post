@@ -10,7 +10,9 @@
   "scripts": {
     "dev": "nodemon --exec ts-node src/index.ts",
     "pro": "tsc && node dist/index.js",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "heroku-postbuild": "tsc"
   },
   "repository": {
     "type": "git",
