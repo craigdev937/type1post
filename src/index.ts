@@ -30,7 +30,7 @@ import { dataSource } from "./data/dataSource";
     app.use(express.json());
     app.use(logger("dev"));
     app.use("/api", playRt);
-    const port = process.env.PORT;
+    const port = process.env.PORT || 9000;
     app.listen(port, () => {
         console.log(`Server: http://localhost:${port}`);
         console.log("Press Ctrl + C to exit.");
