@@ -1,4 +1,4 @@
-web: node dist/index.js
+worker: npm start
 
 
 
