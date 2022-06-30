@@ -7,7 +7,10 @@ export const dataSource = new DataSource({
     logging: false,
     entities: ["dist/models/**/*.js"],
     migrations: ["dist/migrations/**/*.js"],
-    subscribers: ["dist/subscribers/**/*.js"]
+    subscribers: ["dist/subscribers/**/*.js"],
+    ssl: {
+        rejectUnauthorized: false,
+    },
 });
 
 
