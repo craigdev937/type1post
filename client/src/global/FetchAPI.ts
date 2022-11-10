@@ -56,9 +56,9 @@ class FetchAPI {
     });
 
     delete = createAsyncThunk("player/delete",
-    async (payload: IPlayer) => {
+    async (id: string) => {
         const res: Response =
-        await fetch(`${URL}/${payload.id}`, {
+        await fetch(`${URL}/${id}`, {
             method: "DELETE"
         });
         if (!res.ok) throw new Error(res.statusText);
